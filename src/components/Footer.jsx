@@ -1,82 +1,100 @@
+import { motion } from "framer-motion";
+
 function Footer() {
   return (
-    <footer className="bg-[#090e19] text-gray-400 pt-20 pb-10 px-6 border-t border-[#452d7b]">
+    <footer className="relative bg-black text-gray-400 pt-20 pb-10 px-6 overflow-hidden">
 
-      <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
-
-        {/* LEFT - LOGO + DESC */}
-        <div>
-          <div className="flex items-center gap-2 mb-4">
-            <div className="bg-[#8B5CF6] text-black font-bold px-2 py-1 rounded">
-              X
-            </div>
-            <h1 className="text-white font-semibold text-lg">XlentIT</h1>
-          </div>
-
-          <p className="text-sm leading-relaxed">
-            Your trusted partner in career success. We provide end-to-end career support with personal mentorship and dedicated job assistance until placement.
-          </p>
-
-          {/* Social Icons */}
-          <div className="flex gap-4 mt-6">
-            <div className="w-10 h-10 bg-[#8B5CF6] text-black rounded-full flex items-center justify-center">in</div>
-            <div className="w-10 h-10 bg-[#8B5CF6] text-black rounded-full flex items-center justify-center">f</div>
-            <div className="w-10 h-10 bg-[#8B5CF6] text-black rounded-full flex items-center justify-center">ig</div>
-          </div>
-        </div>
-
-        {/* SERVICES */}
-        <div>
-          <h3 className="text-white font-semibold mb-4">Services</h3>
-          <ul className="space-y-3 text-sm">
-            <li>1-on-1 Mentorship</li>
-            <li>Mock Interviews</li>
-            <li>Resume Building</li>
-            <li>IT Staffing</li>
-          </ul>
-        </div>
-
-        {/* COMPANY */}
-        <div>
-          <h3 className="text-white font-semibold mb-4">Company</h3>
-          <ul className="space-y-3 text-sm">
-            <li>About Us</li>
-            <li>How It Works</li>
-            <li>Success Stories</li>
-            <li>Contact</li>
-          </ul>
-        </div>
-
-        {/* CONTACT */}
-        <div>
-          <h3 className="text-white font-semibold mb-4">Contact</h3>
-          <ul className="space-y-3 text-sm">
-
-            <li className="flex items-center gap-2">
-              ✉ info@xlent-itservice.com
-            </li>
-
-            <li className="flex items-center gap-2">
-              +1 (424) 246-2343
-            </li>
-
-            <li className="flex items-start gap-2">
-             823 Congress Ave. STE 300 <br /> Austin, TX 78701
-            </li>
-
-          </ul>
-        </div>
-
+      {/* BIG BACKGROUND TEXT */}
+      <div className="absolute inset-0 flex items-end justify-center pointer-events-none">
+        <h1 className="text-[80px] sm:text-[140px] md:text-[220px] font-bold text-white/5 select-none leading-none">
+          XLENTIT
+        </h1>
       </div>
 
-      {/* BOTTOM */}
-      <div className="mt-16 border-t border-[#1F1F1F] pt-6 flex flex-col md:flex-row justify-between items-center text-sm">
+      <div className="relative z-10 max-w-7xl mx-auto">
 
-        <p>© 2026 XlentIT. All rights reserved.</p>
+        {/* TOP SECTION */}
+        <div className="flex flex-col md:flex-row justify-between items-start gap-10">
 
-        <p className="mt-4 md:mt-0 cursor-pointer hover:text-[#8B5CF6]">
-          Privacy Policy
-        </p>
+          {/* LEFT - LOGO */}
+          <div>
+            <h1 className="text-white text-2xl font-bold mb-4">
+              <span className="text-red-500">Xlent</span>IT
+            </h1>
+
+            <p className="max-w-sm text-sm leading-relaxed">
+              Your trusted partner in career success. We provide end-to-end career support with personal mentorship and dedicated job assistance until placement.
+            </p>
+          </div>
+
+          {/* CENTER LINKS */}
+          <div className="flex flex-col sm:flex-row gap-10 text-sm">
+
+            {/* Services */}
+            <div>
+              <h3 className="text-white mb-4 font-semibold">Services</h3>
+              <ul className="space-y-2">
+                <li className="hover:text-white cursor-pointer">1-on-1 Mentorship</li>
+                <li className="hover:text-white cursor-pointer">Mock Interviews</li>
+                <li className="hover:text-white cursor-pointer">Resume Building</li>
+                <li className="hover:text-white cursor-pointer">IT Staffing</li>
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div>
+              <h3 className="text-white mb-4 font-semibold">Company</h3>
+              <ul className="space-y-2">
+                <li className="hover:text-white cursor-pointer">About Us</li>
+                <li className="hover:text-white cursor-pointer">How It Works</li>
+                <li className="hover:text-white cursor-pointer">Success Stories</li>
+                <li className="hover:text-white cursor-pointer">Contact</li>
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h3 className="text-white mb-4 font-semibold">Contact</h3>
+              <ul className="space-y-2">
+                <li>✉ info@xlent-itservice.com</li>
+                <li>+1 (424) 246-2343</li>
+                <li>
+                  823 Congress Ave. STE 300 <br /> Austin, TX 78701
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          {/* RIGHT - SOCIAL */}
+          <div className="flex gap-4">
+
+            <motion.div whileHover={{ scale: 1.1 }} className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white/20 transition cursor-pointer">
+              in
+            </motion.div>
+
+            <motion.div whileHover={{ scale: 1.1 }} className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white/20 transition cursor-pointer">
+              f
+            </motion.div>
+
+            <motion.div whileHover={{ scale: 1.1 }} className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center hover:bg-white/20 transition cursor-pointer">
+              ig
+            </motion.div>
+
+          </div>
+
+        </div>
+
+        {/* BOTTOM */}
+        <div className="mt-16 flex flex-col md:flex-row justify-between items-center text-sm border-t border-white/10 pt-6">
+
+          <p>© 2026 XlentIT. All rights reserved.</p>
+
+          <p className="mt-4 md:mt-0 hover:text-white cursor-pointer">
+            Privacy Policy
+          </p>
+
+        </div>
 
       </div>
 

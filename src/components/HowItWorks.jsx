@@ -1,87 +1,145 @@
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { FaUserCheck, FaMap, FaTools, FaComments, FaBriefcase } from "react-icons/fa";
+
 function HowItWorks() {
+  const ref = useRef(null);
+
+  // Scroll progress
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
   const steps = [
     {
-      num: "1",
       title: "Free Assessment",
       desc: "Start with a comprehensive evaluation of your skills, experience, and career goals.",
+      icon: <FaUserCheck />,
+      active: true,
     },
     {
-      num: "2",
       title: "Personalized Roadmap",
-      desc: "Receive a customized career plan tailored to your unique strengths and aspirations.",
+      desc: "Receive a customized career plan tailored to your unique strengths.",
+      icon: <FaMap />,
+      active: true,
     },
     {
-      num: "3",
       title: "Skill & Resume Optimization",
-      desc: "Enhance your skills and build an ATS-optimized resume that stands out.",
+      desc: "Enhance your skills and build an ATS-optimized resume.",
+      icon: <FaTools />,
+      active: true,
     },
     {
-      num: "4",
       title: "Interview Preparation",
-      desc: "Master interviews with mock sessions, feedback, and proven techniques.",
+      desc: "Master interviews with mock sessions and feedback.",
+      icon: <FaComments />,
+      active: true,
     },
     {
-      num: "5",
       title: "Job Placement",
-      desc: "Get dedicated support until you land your dream role with ongoing career guidance.",
+      desc: "Get support until you land your dream role.",
+      icon: <FaBriefcase />,
+      active: true,
     },
   ];
 
   return (
-    <section className="bg-[#090e19] py-28 px-6 border-t border-[#452d7b]">
+    <section ref={ref} className="bg-neutral-200 py-24 px-4 sm:px-6">
 
       {/* HEADER */}
-      <div className="text-center max-w-4xl mx-auto mb-20">
-
-        <div className="inline-block border border-[#8B5CF6] text-[#8B5CF6] px-4 py-1 rounded-full text-xs tracking-wide mb-6">
-          HOW IT WORKS
-        </div>
-
-        <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+      <div className="text-center mb-20">
+        <h2 className="text-4xl font-bold text-textDark">
           Your Journey to Career Success
         </h2>
-
-        <p className="mt-6 text-gray-400 text-lg">
-          A proven 5-step process that has helped thousands of students and graduates land their dream jobs.
-        </p>
-
       </div>
 
       {/* TIMELINE */}
-      <div className="relative max-w-7xl mx-auto">
+      <div className="relative max-w-6xl mx-auto">
 
-        {/* Horizontal Line */}
-        <div className="hidden md:block absolute top-10 left-0 w-full h-[1px] bg-[#1F1F1F]"></div>
+        {/* LINE */}
+        <div className="
+          absolute top-0 h-full w-[2px] bg-borderColor
+          left-5 md:left-1/2
+          md:-translate-x-1/2
+        "></div>
 
-        {/* Steps */}
-        <div className="grid md:grid-cols-5 gap-10 text-center">
+        {/* PROGRESS LINE */}
+        <motion.div
+          style={{ scaleY }}
+          className="
+            absolute top-0 w-[2px] h-full 
+            bg-gradient-to-b from-primary to-[#1eb2c9]
+            origin-top
+            left-5 md:left-1/2
+            md:-translate-x-1/2
+          "
+        />
+
+        <div className="space-y-16">
 
           {steps.map((step, i) => (
-            <div key={i} className="relative flex flex-col items-center">
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: i % 2 === 0 ? 80 : -80 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className={`
+                relative flex flex-col
+                md:flex-row items-start md:items-center
+                ${i % 2 === 0 ? "md:flex-row-reverse" : ""}
+              `}
+            >
 
-              {/* Circle Icon */}
-              <div className="relative z-10 w-16 h-16 rounded-full border border-[#8B5CF6] flex items-center justify-center bg-[#0B0B0B]">
+              {/* CARD */}
+              <div className="
+                w-full md:w-1/2 
+                pl-16 md:pl-6
+              ">
 
-                {/* Number badge */}
-                <span className="absolute -top-2 -right-2 bg-[#8B5CF6] text-black text-xs w-6 h-6 flex items-center justify-center rounded-full font-bold">
-                  {step.num}
-                </span>
+                <motion.div
+                  whileHover={{ scale: 1.03 }}
+                  className={`p-5 rounded-xl border transition cursor-pointer
+                  ${step.active
+                    ? "bg-gradient-to-br from-primary to-[#1eb2c9] text-white shadow-[0_0_40px_rgba(30,178,201,0.4)]"
+                    : "bg-white border-borderColor text-textDark hover:shadow-xl"
+                  }`}
+                >
+                  <h3 className="font-semibold">{step.title}</h3>
+                  <p className={`text-sm mt-1 ${step.active ? "text-white/90" : "text-textLight"}`}>
+                    {step.desc}
+                  </p>
+                </motion.div>
 
-                {/* Inner icon placeholder */}
-                <div className="w-6 h-6 bg-[#8B5CF6] rounded-sm opacity-80"></div>
               </div>
 
-              {/* Title */}
-              <h3 className="mt-6 text-white font-semibold text-lg">
-                {step.title}
-              </h3>
+              {/* ICON */}
+              <div className="
+                absolute left-5
+                md:relative md:left-auto
+                md:w-[80px]
+                flex justify-center
+              ">
 
-              {/* Description */}
-              <p className="mt-3 text-gray-400 text-sm leading-relaxed max-w-xs">
-                {step.desc}
-              </p>
+                <motion.div
+                  whileHover={{ scale: 1.2 }}
+                  className={`w-12 h-12 rounded-full flex items-center justify-center text-lg z-10
+                  ${step.active
+                    ? "bg-gradient-to-br from-primary to-[#1eb2c9] text-white shadow-lg"
+                    : "bg-white border border-borderColor text-primary"
+                  }`}
+                >
+                  {step.icon}
+                </motion.div>
 
-            </div>
+              </div>
+
+              {/* EMPTY (desktop spacing) */}
+              <div className="hidden md:block md:w-1/2"></div>
+
+            </motion.div>
           ))}
 
         </div>

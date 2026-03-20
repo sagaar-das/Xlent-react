@@ -1,74 +1,111 @@
+import { motion } from "framer-motion";
+import env from '../assets/env.jpg'
+
 function Hero() {
   return (
-    <section className="relative bg-[#0F172A] text-white min-h-screen flex items-center pt-28 px-6 overflow-hidden">
+    <section className="bg-[#fafafa] px-4 sm:px-6 lg:px-10 py-16 md:py-20 min-h-screen flex items-center overflow-hidden">
 
-  {/* Grid */}
-  <div className="absolute inset-0 opacity-20"
-    style={{
-      backgroundImage: `
-        linear-gradient(#1F1F1F 1px, transparent 1px),
-        linear-gradient(90deg, #1F1F1F 1px, transparent 1px)
-      `,
-      backgroundSize: "60px 60px"
-    }}
-  />
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 
-  <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+        {/* LEFT */}
+        <motion.div
+          initial={{ opacity: 0, x: -60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7 }}
+          className="text-center md:text-left"
+        >
 
-    {/* LEFT */}
-    <div>
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 border border-primary px-4 py-2 rounded-full text-xs sm:text-sm text-textDark mb-6"
+          >
+            <span className="w-2 h-2 bg-teal rounded-full"></span>
+            Trusted by 1,500+ Students & Graduates
+          </motion.div>
 
-      <div className="inline-flex items-center gap-2 border border-[#8B5CF6] px-4 py-2 rounded-full text-sm text-[#8B5CF6] mb-6">
-        ● Trusted by 1,500+ Students & Graduates
+          {/* Heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight"
+          >
+            Your Career Success <br className="hidden sm:block" />
+            is Guaranteed
+          </motion.h1>
+
+          {/* Paragraph */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="mt-5 sm:mt-6 text-textLight text-sm sm:text-base max-w-lg mx-auto md:mx-0"
+          >
+            End-to-end career support with personal mentorship, real interview preparation, and dedicated job assistance until you land your dream role.
+          </motion.p>
+
+          {/* Pills */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-5 flex flex-wrap gap-4 text-sm"
+          >
+            <span className="border border-primary text-textLight px-4 py-2 rounded-full"><span className="text-tealDark">✓</span> 100% Job Placement Support</span>
+            <span className="border border-primary text-textLight px-4 py-2 rounded-full"><span className="text-tealDark">✓</span> 1-on-1 Dedicated Mentorship</span>
+            <span className="border border-primary text-textLight px-4 py-2 rounded-full"><span className="text-tealDark">✓</span> Real Interview Preparation</span>
+            <span className="border border-primary text-textLight px-4 py-2 rounded-full"><span className="text-tealDark">✓</span> ATS-Optimized Resumes</span>
+          </motion.div>
+
+          {/* Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="mt-8 flex flex-col sm:flex-row justify-center md:justify-start gap-4"
+          >
+            <button className="border border-primary px-6 py-3 rounded-lg text-textDark hover:bg-white transition">
+              Book Free Session
+            </button>
+
+            <button className="bg-primary text-white px-6 py-3 rounded-lg hover:opacity-90 transition">
+              See How It Works
+            </button>
+          </motion.div>
+
+        </motion.div>
+
+        {/* RIGHT IMAGE */}
+        <motion.div
+          initial={{ opacity: 0, x: 60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7 }}
+          className="relative flex justify-center mt-10 md:mt-0"
+        >
+
+          {/* Floating animation */}
+          <motion.div
+            animate={{ y: [0, -15, 0] }}
+            transition={{ duration: 4, repeat: Infinity }}
+            className="bg-primary rounded-3xl p-3 sm:p-4 md:p-5 rotate-3"
+          >
+            <div className="bg-white rounded-3xl overflow-hidden transition-transform duration-500 hover:scale-105">
+              <img
+                src={env}
+                alt=""
+                className="w-[260px] sm:w-[320px] md:w-full h-[260px] sm:h-[300px] md:h-[350px] object-cover"
+              />
+            </div>
+          </motion.div>
+
+        </motion.div>
+
       </div>
 
-      <h1 className="text-5xl md:text-[64px] font-extrabold leading-[1.1] tracking-tight">
-        Your Career Success <br />
-        is <span className="text-[#8B5CF6]">Guaranteed</span>
-      </h1>
-
-      <p className="mt-6 text-gray-400 text-[17px] leading-relaxed max-w-xl">
-        End-to-end career support with personal mentorship, real interview
-        preparation, and dedicated job assistance until you land your dream role.
-      </p>
-
-      <div className="mt-8 flex flex-wrap gap-4 text-sm">
-        <span className="border border-[#8B5CF6] px-4 py-2 rounded-full">✓ 100% Job Placement Support</span>
-        <span className="border border-[#8B5CF6] px-4 py-2 rounded-full">✓ 1-on-1 Dedicated Mentorship</span>
-        <span className="border border-[#8B5CF6] px-4 py-2 rounded-full">✓ Real Interview Preparation</span>
-        <span className="border border-[#8B5CF6] px-4 py-2 rounded-full">✓ ATS-Optimized Resumes</span>
-      </div>
-
-      <div className="mt-10 flex gap-4">
-        <button className= "bg-[#8B5CF6] text-black px-6 py-3 rounded-md font-semibold">
-          Book Free Session →
-        </button>
-
-        <button className="border border-black px-6 py-3 rounded-md hover:border-[#8B5CF6]">
-          See How It Works
-        </button>
-      </div>
-    </div>
-
-    {/* RIGHT */}
-    <div className="relative flex justify-center">
-
-      <div className="absolute w-[420px] h-[420px] bg-[#8B5CF6] blur-[120px] opacity-20 rounded-full"></div>
-
-      <img
-        src="https://images.unsplash.com/photo-1556761175-4b46a572b786"
-        alt=""
-        className="relative rounded-2xl border border-[#8B5CF6]]"
-      />
-
-      <div className="absolute bottom-6 left-6 bg-black border border-[#8B5CF6] px-4 py-2 rounded-lg">
-        <p className="text-white font-bold">98%</p>
-        <p className="text-gray-400 text-sm">Placement Rate</p>
-      </div>
-    </div>
-
-  </div>
-</section>
+    </section>
   );
 }
 
